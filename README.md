@@ -57,12 +57,20 @@ PromptDiff/SnapFolioと同じく、実装後に独立エージェント8方向(�
 
 実機確認では他に、手動ブロック/集中セッション(開始・カウントダウン・セッション中ロック)/合言葉ロック(なし・誤り・正解の3パターン)/スケジュール自動ブロック/セッション自然終了時の統計記録、いずれも正常動作を確認済み(ExtensionPay未登録のためDevToolsコンソールから`isPro`フラグを直接立てて検証)。
 
+## 多言語対応(2026-08-29実施)
+
+Chrome拡張機能標準のi18nの仕組み(`_locales/ja`・`_locales/en`+`chrome.i18n.getMessage()`)でUI全体を日英対応。ブラウザのUI言語設定に応じて自動で切り替わるため、言語切替UIは不要。`lib/i18n.js`が`data-i18n`/`data-i18n-placeholder`属性を持つDOM要素へ自動反映するヘルパーを提供、JS側で動的生成する文言(トースト・統計文・曜日ラベル等)も`flI18n.t(key, substitutions)`経由で取得する方式に統一。`manifest.json`の`description`も`__MSG_extDescription__`化。実機でのEN切替確認はChromeのUI言語変更が必要なため、代わりにHTML/JS内で使用されている全i18nキーが`ja`/`en`両方のmessages.jsonに存在するかをスクリプトで機械チェック(不足なし)。
+
+**教訓:** 価格(300円JPY)は据え置きでよい(Stripeは海外カードでも決済でき、$2相当は十分安い)。海外販売の実質的なボトルネックは通貨表記ではなくUI・ストア説明文の言語だった。
+
 ## 未実装・要対応(公開前チェックリスト)
 
 - [x] 実機での動作確認(2026-08-29実施。上記の追加バグ1件を発見・修正)
 - [x] ExtensionPay側でアプリ登録(2026-08-29完了。Extension ID `focuslock`は他者と衝突していたため`uuhai-focuslock`で登録。300円JPY・買い切り(Once - Lifetime))
-- [ ] アイコンの本番デザイン(`icons/generate_icons.py`で生成済み、PromptDiff/SnapFolioと同系統の青→紫グラデーション+白い南京錠グリフ)
-- [ ] 価格の最終決定
-- [ ] プライバシーポリシー作成・公開
-- [ ] Chrome Web Store申請文言(特に`host_permissions: <all_urls>`の使用理由説明が審査で問われる可能性が高い)
+- [x] 多言語対応(ja/en、2026-08-29実施)
+- [x] アイコンの本番デザイン(2026-08-29ユーザー承認済み。青→紫グラデーション+白い南京錠グリフ)
+- [x] 価格の最終決定(2026-08-29確定、300円)
+- [x] プライバシーポリシー作成・公開(2026-08-29、`https://uuhai0625.github.io/focuslock/privacy.html`、リポジトリ`uuhai0625/focuslock`)
+- [ ] Chrome Web Store申請文言(特に`host_permissions: <all_urls>`の使用理由説明が審査で問われる可能性が高い。英語版ストア説明文も用意する)
 - [ ] スクリーンショット撮影
+- [ ] Chrome Web Store審査提出
