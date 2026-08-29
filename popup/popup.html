@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<title>FocusLock</title>
+<link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+
+<h1 class="sr-only">FocusLockの集中セッション操作パネル</h1>
+
+<div class="panel">
+  <p class="title">FocusLock</p>
+
+  <div id="session-idle" class="block">
+    <p class="section-label">集中セッションを始める</p>
+    <div class="session-buttons">
+      <button class="session-btn" data-minutes="25">25分</button>
+      <button class="session-btn" data-minutes="50">50分</button>
+      <button class="session-btn" data-minutes="90">90分</button>
+    </div>
+    <p id="pro-hint" class="muted small hidden">※ 集中セッションは買い切り版の機能です</p>
+  </div>
+
+  <div id="session-active" class="block hidden">
+    <p class="section-label">集中セッション中</p>
+    <p id="countdown" class="countdown">--:--</p>
+    <button id="btn-end-early" class="secondary">早く終了する</button>
+    <div id="phrase-prompt" class="hidden">
+      <input id="phrase-input" type="text" placeholder="合言葉を入力" />
+      <button id="btn-confirm-end">終了する</button>
+      <p id="phrase-error" class="error hidden">合言葉が違います</p>
+    </div>
+  </div>
+
+  <div class="block">
+    <p class="section-label">今すぐブロック</p>
+    <label class="toggle-row">
+      <input type="checkbox" id="manual-toggle" />
+      <span>手動でブロックをON/OFF</span>
+    </label>
+  </div>
+
+  <div class="block">
+    <p class="section-label">ブロック対象サイト</p>
+    <div class="add-row">
+      <input id="site-input" type="text" placeholder="例: x.com" />
+      <button id="btn-add-site">追加</button>
+    </div>
+    <ul id="site-list" class="site-list"></ul>
+  </div>
+
+  <div class="plan-row">
+    <span id="plan-label" class="muted">無料版</span>
+  </div>
+  <button id="btn-upgrade" class="upgrade hidden">
+    <span class="icon">⭐</span>買い切り版で集中セッションを解放
+  </button>
+  <button id="btn-options" class="link-btn">詳細設定(合言葉・スケジュール)</button>
+</div>
+
+<div id="toast" class="toast hidden"></div>
+
+<script src="../lib/ExtPay.js"></script>
+<script src="../lib/patterns.js"></script>
+<script src="../lib/countdown.js"></script>
+<script src="popup.js"></script>
+</body>
+</html>

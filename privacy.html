@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>FocusLock プライバシーポリシー</title>
+<style>
+  body { max-width: 720px; margin: 40px auto; padding: 0 20px; font-family: -apple-system, "Segoe UI", system-ui, sans-serif; line-height: 1.7; color: #1a1a1a; }
+  h1 { font-size: 22px; }
+  h2 { font-size: 16px; margin-top: 32px; border-bottom: 1px solid #e2e2df; padding-bottom: 6px; }
+  table { border-collapse: collapse; width: 100%; margin: 12px 0; }
+  th, td { border: 1px solid #e2e2df; padding: 8px 10px; text-align: left; font-size: 14px; }
+  th { background: #f7f7f5; }
+  .updated { color: #6b6b66; font-size: 13px; }
+  a { color: #2f6fed; }
+</style>
+</head>
+<body>
+
+<h1>FocusLock プライバシーポリシー</h1>
+<p class="updated">最終更新日: 2026年8月29日</p>
+
+<p>FocusLock(以下「本拡張機能」)は、ユーザーのプライバシーを尊重し、以下の方針でデータを取り扱います。</p>
+
+<h2>収集する情報</h2>
+<p>本拡張機能は、ユーザーが自ら設定したブロック対象サイトのリスト・スケジュール・合言葉・利用統計のみを扱います。これらのデータは<strong>ユーザーが操作しているブラウザ内(chrome.storage.local)にのみ保存され</strong>、開発者を含む第三者のサーバーには一切送信されません。</p>
+
+<p>本拡張機能は以下を行いません。</p>
+<ul>
+  <li>ユーザーの閲覧履歴・訪問したページの内容の収集・記録・送信</li>
+  <li>ブロック対象として登録していないサイトの閲覧内容の監視</li>
+  <li>Webページのスクレイピング・自動収集</li>
+  <li>広告目的でのトラッキング</li>
+</ul>
+
+<h2>サイトへのアクセス権限(host_permissions)について</h2>
+<p>本拡張機能は「すべてのサイトのデータの読み取りと変更」という広い権限を要求しますが、これはサイトブロック機能の性質上必要なものです。ユーザーが登録したブロック対象サイトへのアクセスを検知し、拡張機能内のブロック画面(<code>blocked.html</code>)へリダイレクトするために、Chromeの<code>declarativeNetRequest</code> APIを使用しています。この権限は「ページの内容を読み取る」「閲覧データを収集・送信する」用途には一切使用されません。ブロック対象として登録していないサイトについて、本拡張機能は閲覧内容に一切関知しません。</p>
+
+<h2>決済に関する情報</h2>
+<p>買い切り版へのアップグレードを選択した場合のみ、決済処理を<a href="https://extensionpay.com" target="_blank" rel="noopener">ExtensionPay</a>(決済代行、Stripe連携)経由で行います。この際、メールアドレス・支払い情報はExtensionPay/Stripeが直接取り扱い、本拡張機能の開発者はカード情報等の決済詳細を保持・閲覧しません。決済状態(有料/無料)の確認のみ、ExtensionPayのAPIとの通信で行われます。</p>
+<p>ExtensionPay・Stripeそれぞれのプライバシーポリシーもあわせてご確認ください。</p>
+<ul>
+  <li>ExtensionPay: <a href="https://extensionpay.com" target="_blank" rel="noopener">https://extensionpay.com</a></li>
+  <li>Stripe: <a href="https://stripe.com/jp/privacy" target="_blank" rel="noopener">https://stripe.com/jp/privacy</a></li>
+</ul>
+
+<h2>データの削除</h2>
+<p>保存したブロック対象サイト・スケジュール・合言葉・統計は、拡張機能をアンインストールすることで完全に削除されます(chrome.storage.localはアンインストール時にブラウザが自動的に消去します)。ブロック対象サイトは拡張機能の操作画面からいつでも削除できます。</p>
+
+<h2>権限の使用目的</h2>
+<table>
+  <tr><th>権限</th><th>使用目的</th></tr>
+  <tr><td><code>storage</code></td><td>ブロック対象サイト・スケジュール・合言葉・統計をブラウザのローカルストレージに保存するため</td></tr>
+  <tr><td><code>alarms</code></td><td>集中セッションの終了時刻の管理、スケジュールブロックの定期チェックのため</td></tr>
+  <tr><td><code>declarativeNetRequest</code></td><td>ブロック対象サイトへのアクセスを検知し、拡張機能内のブロック画面へリダイレクトするため</td></tr>
+  <tr><td><code>host_permissions</code>(すべてのサイト)</td><td>上記のブロックリダイレクトを、ユーザーが登録した任意のサイトに対して行うため(閲覧内容の読み取り・収集には使用しません)</td></tr>
+</table>
+
+<h2>お問い合わせ</h2>
+<p>本ポリシーに関するご質問は、Chrome Web Storeの開発者連絡先までお願いします。</p>
+
+</body>
+</html>
