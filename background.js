@@ -1,6 +1,6 @@
 importScripts('lib/ExtPay.js', 'lib/storage.js');
 
-var extpay = ExtPay('focuslock');
+var extpay = ExtPay('uuhai-focuslock');
 extpay.startBackground();
 
 extpay.onPaid.addListener(() => {

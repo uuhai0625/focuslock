@@ -2,47 +2,47 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8" />
-<title>FocusLock 詳細設定</title>
+<title data-i18n="optionsPageTitle">FocusLock Settings</title>
 <link rel="stylesheet" href="options.css" />
 </head>
 <body>
 
 <div class="wrap">
-  <h1>FocusLock 詳細設定</h1>
+  <h1 data-i18n="optionsPageTitle">FocusLock Settings</h1>
 
   <section class="card">
-    <h2>合言葉(セッションを早く終了するときに必要)</h2>
-    <p class="muted">集中セッション中に「早く終了する」を押すと、ここで設定した合言葉の入力を求められます。自分にとって思いとどまれる一言にするのがおすすめです。合言葉を空欄のままにすると、ロック機能は働きません。</p>
+    <h2 data-i18n="phraseSectionTitle">Passphrase (needed to end a session early)</h2>
+    <p class="muted" data-i18n="phraseSectionDesc">When you press "End early" during a focus session, you'll be asked to type the passphrase you set here. Pick something that makes you think twice. Leaving it blank disables the lock.</p>
     <div class="row">
-      <input id="phrase-input" type="text" placeholder="例: 今やめたら後悔する" />
-      <button id="btn-save-phrase">保存</button>
+      <input id="phrase-input" type="text" data-i18n-placeholder="phraseInputPlaceholder" placeholder="Passphrase" />
+      <button id="btn-save-phrase" data-i18n="saveButton">Save</button>
     </div>
     <p id="phrase-status" class="status hidden"></p>
-    <p id="phrase-locked-hint" class="status hidden">セッション中は変更できません</p>
+    <p id="phrase-locked-hint" class="status hidden" data-i18n="phraseLockedHint">Can't change this during a session</p>
   </section>
 
   <section class="card">
-    <h2>スケジュール(決まった時間帯を自動でブロック)</h2>
-    <p class="muted">曜日と時間帯を指定すると、その時間はセッションを開始しなくても自動でブロックされます。</p>
-    <p id="schedule-pro-hint" class="status hidden">※ スケジュール機能は買い切り版でご利用いただけます</p>
+    <h2 data-i18n="scheduleSectionTitle">Schedule (block automatically at set times)</h2>
+    <p class="muted" data-i18n="scheduleSectionDesc">Pick days and a time range to block automatically, without starting a session.</p>
+    <p id="schedule-pro-hint" class="status hidden" data-i18n="scheduleProHint">* Scheduling is a paid feature</p>
 
     <fieldset id="schedule-fieldset">
       <div id="schedule-form" class="row wrap-row">
         <label class="days">
-          <input type="checkbox" value="1" /> 月
+          <input type="checkbox" value="1" /> <span data-i18n="dayMon">Mon</span>
         </label>
-        <label class="days"><input type="checkbox" value="2" /> 火</label>
-        <label class="days"><input type="checkbox" value="3" /> 水</label>
-        <label class="days"><input type="checkbox" value="4" /> 木</label>
-        <label class="days"><input type="checkbox" value="5" /> 金</label>
-        <label class="days"><input type="checkbox" value="6" /> 土</label>
-        <label class="days"><input type="checkbox" value="0" /> 日</label>
+        <label class="days"><input type="checkbox" value="2" /> <span data-i18n="dayTue">Tue</span></label>
+        <label class="days"><input type="checkbox" value="3" /> <span data-i18n="dayWed">Wed</span></label>
+        <label class="days"><input type="checkbox" value="4" /> <span data-i18n="dayThu">Thu</span></label>
+        <label class="days"><input type="checkbox" value="5" /> <span data-i18n="dayFri">Fri</span></label>
+        <label class="days"><input type="checkbox" value="6" /> <span data-i18n="daySat">Sat</span></label>
+        <label class="days"><input type="checkbox" value="0" /> <span data-i18n="daySun">Sun</span></label>
       </div>
       <div class="row">
         <input id="schedule-start" type="time" value="09:00" />
         <span>〜</span>
         <input id="schedule-end" type="time" value="17:00" />
-        <button id="btn-add-schedule">追加</button>
+        <button id="btn-add-schedule" data-i18n="addButton">Add</button>
       </div>
     </fieldset>
     <ul id="schedule-list" class="schedule-list"></ul>
@@ -50,12 +50,13 @@
   </section>
 
   <section class="card">
-    <h2>統計</h2>
-    <p><span id="stat-sessions">0</span> 回の集中セッションを完了 / 合計 <span id="stat-minutes">0</span> 分</p>
+    <h2 data-i18n="statsSectionTitle">Stats</h2>
+    <p id="stats-sentence"></p>
   </section>
 </div>
 
 <script src="../lib/ExtPay.js"></script>
+<script src="../lib/i18n.js"></script>
 <script src="options.js"></script>
 </body>
 </html>

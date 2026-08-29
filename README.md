@@ -60,7 +60,7 @@ PromptDiff/SnapFolioと同じく、実装後に独立エージェント8方向(�
 ## 未実装・要対応(公開前チェックリスト)
 
 - [x] 実機での動作確認(2026-08-29実施。上記の追加バグ1件を発見・修正)
-- [ ] ExtensionPay側でアプリ登録(Extension ID `focuslock`)
+- [x] ExtensionPay側でアプリ登録(2026-08-29完了。Extension ID `focuslock`は他者と衝突していたため`uuhai-focuslock`で登録。300円JPY・買い切り(Once - Lifetime))
 - [ ] アイコンの本番デザイン(`icons/generate_icons.py`で生成済み、PromptDiff/SnapFolioと同系統の青→紫グラデーション+白い南京錠グリフ)
 - [ ] 価格の最終決定
 - [ ] プライバシーポリシー作成・公開

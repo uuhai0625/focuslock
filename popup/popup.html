@@ -7,56 +7,56 @@
 </head>
 <body>
 
-<h1 class="sr-only">FocusLockの集中セッション操作パネル</h1>
+<h1 class="sr-only" data-i18n="popupA11yTitle">FocusLock focus session controls</h1>
 
 <div class="panel">
   <p class="title">FocusLock</p>
 
   <div id="session-idle" class="block">
-    <p class="section-label">集中セッションを始める</p>
+    <p class="section-label" data-i18n="startSessionLabel">Start a focus session</p>
     <div class="session-buttons">
-      <button class="session-btn" data-minutes="25">25分</button>
-      <button class="session-btn" data-minutes="50">50分</button>
-      <button class="session-btn" data-minutes="90">90分</button>
+      <button class="session-btn" data-minutes="25" data-i18n="session25min">25 min</button>
+      <button class="session-btn" data-minutes="50" data-i18n="session50min">50 min</button>
+      <button class="session-btn" data-minutes="90" data-i18n="session90min">90 min</button>
     </div>
-    <p id="pro-hint" class="muted small hidden">※ 集中セッションは買い切り版の機能です</p>
+    <p id="pro-hint" class="muted small hidden" data-i18n="proRequiredHint">* Focus sessions are a paid feature</p>
   </div>
 
   <div id="session-active" class="block hidden">
-    <p class="section-label">集中セッション中</p>
+    <p class="section-label" data-i18n="sessionActiveLabel">Focus session in progress</p>
     <p id="countdown" class="countdown">--:--</p>
-    <button id="btn-end-early" class="secondary">早く終了する</button>
+    <button id="btn-end-early" class="secondary" data-i18n="endEarlyButton">End early</button>
     <div id="phrase-prompt" class="hidden">
-      <input id="phrase-input" type="text" placeholder="合言葉を入力" />
-      <button id="btn-confirm-end">終了する</button>
-      <p id="phrase-error" class="error hidden">合言葉が違います</p>
+      <input id="phrase-input" type="text" data-i18n-placeholder="phrasePromptPlaceholder" placeholder="Enter passphrase" />
+      <button id="btn-confirm-end" data-i18n="confirmEndButton">End session</button>
+      <p id="phrase-error" class="error hidden" data-i18n="phraseError">Wrong passphrase</p>
     </div>
   </div>
 
   <div class="block">
-    <p class="section-label">今すぐブロック</p>
+    <p class="section-label" data-i18n="blockNowLabel">Block now</p>
     <label class="toggle-row">
       <input type="checkbox" id="manual-toggle" />
-      <span>手動でブロックをON/OFF</span>
+      <span data-i18n="manualToggleLabel">Toggle manual blocking</span>
     </label>
   </div>
 
   <div class="block">
-    <p class="section-label">ブロック対象サイト</p>
+    <p class="section-label" data-i18n="blockListLabel">Blocked sites</p>
     <div class="add-row">
-      <input id="site-input" type="text" placeholder="例: x.com" />
-      <button id="btn-add-site">追加</button>
+      <input id="site-input" type="text" data-i18n-placeholder="siteInputPlaceholder" placeholder="e.g. x.com" />
+      <button id="btn-add-site" data-i18n="addButton">Add</button>
     </div>
     <ul id="site-list" class="site-list"></ul>
   </div>
 
   <div class="plan-row">
-    <span id="plan-label" class="muted">無料版</span>
+    <span id="plan-label" class="muted" data-i18n="planFree">Free</span>
   </div>
   <button id="btn-upgrade" class="upgrade hidden">
-    <span class="icon">⭐</span>買い切り版で集中セッションを解放
+    <span class="icon">⭐</span><span data-i18n="upgradeButton">Unlock focus sessions (one-time purchase)</span>
   </button>
-  <button id="btn-options" class="link-btn">詳細設定(合言葉・スケジュール)</button>
+  <button id="btn-options" class="link-btn" data-i18n="optionsLink">Advanced settings (passphrase, schedule)</button>
 </div>
 
 <div id="toast" class="toast hidden"></div>
@@ -64,6 +64,7 @@
 <script src="../lib/ExtPay.js"></script>
 <script src="../lib/patterns.js"></script>
 <script src="../lib/countdown.js"></script>
+<script src="../lib/i18n.js"></script>
 <script src="popup.js"></script>
 </body>
 </html>

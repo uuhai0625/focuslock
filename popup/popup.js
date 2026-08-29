@@ -34,7 +34,7 @@ function renderSiteList(blockList, locked) {
   if (blockList.length === 0) {
     const li = document.createElement('li');
     li.className = 'empty-hint';
-    li.textContent = 'まだ何も追加されていません';
+    li.textContent = flI18n.t('emptyBlockListHint');
     list.appendChild(li);
     return;
   }
@@ -49,7 +49,7 @@ function renderSiteList(blockList, locked) {
     removeBtn.addEventListener('click', async () => {
       const result = await sendMessage({ type: 'REMOVE_SITE', id: site.id });
       if (!result.ok) {
-        showToast('セッション中は変更できません');
+        showToast(flI18n.t('toastLocked'));
         return;
       }
       render();
@@ -91,7 +91,7 @@ async function render() {
   document.getElementById('btn-add-site').disabled = session.active;
   renderSiteList(blockList, session.active);
 
-  document.getElementById('plan-label').textContent = settings.isPro ? '買い切り版' : '無料版';
+  document.getElementById('plan-label').textContent = flI18n.t(settings.isPro ? 'planPro' : 'planFree');
   document.getElementById('btn-upgrade').classList.toggle('hidden', settings.isPro);
 }
 
@@ -101,9 +101,9 @@ document.querySelectorAll('.session-btn').forEach((btn) => {
     const result = await sendMessage({ type: 'START_SESSION', minutes });
     if (!result.ok) {
       if (result.error === 'pro_required') {
-        showToast('集中セッションは買い切り版の機能です');
+        showToast(flI18n.t('toastProRequired'));
       } else {
-        showToast('セッションを開始できませんでした');
+        showToast(flI18n.t('toastSessionStartFailed'));
       }
       return;
     }
@@ -132,7 +132,7 @@ document.getElementById('manual-toggle').addEventListener('change', async (e) =>
   const result = await sendMessage({ type: 'SET_MANUAL_BLOCK', on });
   if (!result.ok) {
     e.target.checked = !on;
-    showToast('セッション中は変更できません');
+    showToast(flI18n.t('toastLocked'));
   }
 });
 
@@ -140,12 +140,12 @@ document.getElementById('btn-add-site').addEventListener('click', async () => {
   const input = document.getElementById('site-input');
   const rule = flPatterns.toRule(input.value);
   if (!rule) {
-    showToast('サイトのアドレスを確認してください');
+    showToast(flI18n.t('toastInvalidSite'));
     return;
   }
   const result = await sendMessage({ type: 'ADD_SITE', pattern: rule.pattern, label: rule.domain });
   if (!result.ok) {
-    showToast('セッション中は変更できません');
+    showToast(flI18n.t('toastLocked'));
     return;
   }
   input.value = '';
@@ -157,7 +157,7 @@ document.getElementById('site-input').addEventListener('keydown', (e) => {
 });
 
 document.getElementById('btn-upgrade').addEventListener('click', () => {
-  const extpay = ExtPay('focuslock');
+  const extpay = ExtPay('uuhai-focuslock');
   extpay.openPaymentPage();
 });
 
@@ -165,4 +165,5 @@ document.getElementById('btn-options').addEventListener('click', () => {
   chrome.runtime.openOptionsPage();
 });
 
+flI18n.apply();
 render();

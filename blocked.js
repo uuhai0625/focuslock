@@ -1,6 +1,7 @@
 let tickTimer = null;
 
 async function init() {
+  document.title = flI18n.t('blockedPageTitle');
   const state = await chrome.runtime.sendMessage({ type: 'GET_STATE' });
   const countdownEl = document.getElementById('countdown');
   const messageEl = document.getElementById('message');
@@ -20,10 +21,10 @@ async function init() {
     };
     tick();
     tickTimer = setInterval(tick, 1000);
-    messageEl.textContent = 'セッションが終わるまで、このサイトは開けません。';
+    messageEl.textContent = flI18n.t('blockedSessionMessage');
   } else {
     countdownEl.classList.add('hidden');
-    messageEl.textContent = 'FocusLockの設定でブロック対象になっています。拡張機能のアイコンから設定を変更できます。';
+    messageEl.textContent = flI18n.t('blockedGeneralMessage');
   }
 }
 
@@ -35,4 +36,5 @@ document.getElementById('btn-back').addEventListener('click', () => {
   }
 });
 
+flI18n.apply();
 init();

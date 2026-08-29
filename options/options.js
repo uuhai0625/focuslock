@@ -1,4 +1,4 @@
-const DAY_LABELS = ['日', '月', '火', '水', '木', '金', '土'];
+const DAY_KEYS = ['daySun', 'dayMon', 'dayTue', 'dayWed', 'dayThu', 'dayFri', 'daySat'];
 
 function sendMessage(message) {
   return chrome.runtime.sendMessage(message);
@@ -30,20 +30,20 @@ function renderScheduleList(schedule, locked) {
     const days = rule.days
       .slice()
       .sort((a, b) => a - b)
-      .map((d) => DAY_LABELS[d])
+      .map((d) => flI18n.t(DAY_KEYS[d]))
       .join('');
     const label = document.createElement('span');
     label.textContent = `${days} ${minutesToTime(rule.startMinute)}〜${minutesToTime(rule.endMinute)}`;
     const removeBtn = document.createElement('button');
     removeBtn.className = 'remove';
-    removeBtn.textContent = '削除';
+    removeBtn.textContent = flI18n.t('removeButton');
     removeBtn.disabled = locked;
     removeBtn.addEventListener('click', async () => {
       const state = await sendMessage({ type: 'GET_STATE' });
       const next = state.schedule.filter((r) => r.id !== rule.id);
       const result = await sendMessage({ type: 'SET_SCHEDULE', schedule: next });
       if (!result.ok) {
-        showScheduleStatus('削除できませんでした(セッション中、または買い切り版限定の機能です)');
+        showScheduleStatus(flI18n.t('scheduleRemoveFailed'));
         return;
       }
       render();
@@ -68,15 +68,17 @@ async function render() {
   document.getElementById('schedule-pro-hint').classList.toggle('hidden', settings.isPro);
   renderScheduleList(schedule, session.active || !settings.isPro);
 
-  document.getElementById('stat-sessions').textContent = stats.totalSessions;
-  document.getElementById('stat-minutes').textContent = stats.totalFocusMinutes;
+  document.getElementById('stats-sentence').textContent = flI18n.t('statsSentence', [
+    String(stats.totalSessions),
+    String(stats.totalFocusMinutes)
+  ]);
 }
 
 document.getElementById('btn-save-phrase').addEventListener('click', async () => {
   const phrase = document.getElementById('phrase-input').value;
   const result = await sendMessage({ type: 'SET_PHRASE', phrase });
   const status = document.getElementById('phrase-status');
-  status.textContent = result.ok ? '保存しました' : '保存できませんでした';
+  status.textContent = flI18n.t(result.ok ? 'phraseSaved' : 'phraseSaveFailed');
   status.classList.remove('hidden');
   setTimeout(() => status.classList.add('hidden'), 2000);
 });
@@ -92,10 +94,11 @@ document.getElementById('btn-add-schedule').addEventListener('click', async () =
   const next = state.schedule.concat([{ id: Date.now(), days, startMinute, endMinute }]);
   const result = await sendMessage({ type: 'SET_SCHEDULE', schedule: next });
   if (!result.ok) {
-    showScheduleStatus('追加できませんでした(セッション中、または買い切り版限定の機能です)');
+    showScheduleStatus(flI18n.t('scheduleAddFailed'));
     return;
   }
   render();
 });
 
+flI18n.apply();
 render();
