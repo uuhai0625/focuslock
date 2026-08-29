@@ -106,16 +106,16 @@ Your block list, schedule, passphrase, and stats are stored only in your browser
 
 https://uuhai0625.github.io/focuslock/privacy.html (2026-08-30公開、`PRIVACY.md`を`privacy.html`化してGitHub Pagesで公開、リポジトリ`uuhai0625/focuslock`)
 
-## スクリーンショット(未実施)
+## スクリーンショット(2026-08-30撮影完了)
 
-Chrome Web Storeは1280x800または640x400のスクリーンショットを1〜5枚要求。SnapFolio同様、拡張機能ポップアップ/オプション/ブロック画面への自動ナビゲートは撮影目的でも実施可能(chrome-extension://URLへの直接navigateは表示可能、ただしスクリーンショット取得はclaude-in-chromeでは「別の拡張機能」制限によりブロックされるため、ユーザーによる手動撮影が必要)。
+Chrome Web Storeは1280x800または640x400のスクリーンショットを1〜5枚要求。SnapFolioと同じ理由(拡張機能の自ページはclaude-in-chromeの「別の拡張機能」制限でスクリーンショット取得不可)でユーザーが手動撮影、Claude側はWin+Shift+S直後のOSクリップボードから画像を保存する方式で対応(チャットに貼り付けられた画像はOSクリップボードと同期しないため、切り取った直後に保存する必要がある点に注意)。
 
-候補構成:
-1. [ ] ポップアップ画面(集中セッション中のカウントダウン表示)
-2. [ ] ポップアップ画面(無料版、ブロック対象サイト一覧・買い切りボタン)
-3. [ ] 合言葉ロック画面(「合言葉が違います」のエラー表示)
-4. [ ] 詳細設定画面(スケジュール設定)
-5. [ ] ブロック画面(blocked.html、🔒アイコン+カウントダウン)
+1. [x] popup画面(無料版、ブロック対象サイト一覧・買い切り誘導ボタン)
+2. [x] popup画面(合言葉ロック、「合言葉が違います」のエラー表示)
+3. [x] 詳細設定画面(スケジュール設定・統計)
+4. [x] ブロック画面(blocked.html、🔒アイコン)
+
+元スクリーンショット(`store_screenshots/03_popup_idle_free_upgrade.png`等)に加え、`compose.py`(Pillow)でブランドカラー(青→紫グラデーション、アイコンと同系統)の背景に白いカード状で配置した1280x800版(`store_01_popup_free.png`〜`store_04_blocked_page.png`)を生成済み。ブロック画面のみ既に完成された暗色デザインのため、カード合成でなく中央クロップ+リサイズで1280x800化。
 
 ## カテゴリ・言語
 

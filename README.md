@@ -71,6 +71,6 @@ Chrome拡張機能標準のi18nの仕組み(`_locales/ja`・`_locales/en`+`chrom
 - [x] アイコンの本番デザイン(2026-08-29ユーザー承認済み。青→紫グラデーション+白い南京錠グリフ)
 - [x] 価格の最終決定(2026-08-29確定、300円)
 - [x] プライバシーポリシー作成・公開(2026-08-29、`https://uuhai0625.github.io/focuslock/privacy.html`、リポジトリ`uuhai0625/focuslock`)
-- [ ] Chrome Web Store申請文言(特に`host_permissions: <all_urls>`の使用理由説明が審査で問われる可能性が高い。英語版ストア説明文も用意する)
-- [ ] スクリーンショット撮影
+- [x] Chrome Web Store申請文言(2026-08-30作成完了。日英両方、`STORE_SUBMISSION.md`参照)
+- [x] スクリーンショット撮影(2026-08-30完了、4枚。`store_screenshots/`参照)
 - [ ] Chrome Web Store審査提出
